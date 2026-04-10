@@ -73,7 +73,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings({"PMD.GuardLogStatement"}) // It already is, but PMD is confused and reporting error in unrelated locations.
 public final class YamlExecutionContext {
-    private static final Logger logger = LogManager.getLogger(YamlRunner.class);
+    private static final Logger logger = LogManager.getLogger(YamlExecutionContext.class);
 
     /**
      * List of metrics field names that are tracked for planner comparison.
@@ -323,7 +323,7 @@ public final class YamlExecutionContext {
                 return URI.create(localList.get(0));
             }
             Assert.thatUnchecked(localList.isEmpty(), ErrorCode.INTERNAL_ERROR,
-                    () -> "Requested a default connection URI, but multiple available to choose from in local: " + String.join(", " + localList));
+                    () -> "Requested a default connection URI, but multiple available to choose from in local: " + String.join(", ", localList));
             final var globalList = getGlobalConnectionURIList(resource);
             Assert.thatUnchecked(!globalList.isEmpty(), ErrorCode.INTERNAL_ERROR, () -> "Requested a default connection URI, but none present");
             Assert.thatUnchecked(globalList.size() == 1, ErrorCode.INTERNAL_ERROR,
