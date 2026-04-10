@@ -237,7 +237,7 @@ public final class YamlExecutionContext {
     }
 
     public int getNumThreads() {
-        return Runtime.getRuntime().availableProcessors() / 2;
+        return Math.max(1, Runtime.getRuntime().availableProcessors() / 2);
     }
 
     public void replaceFilesIfRequired() {
